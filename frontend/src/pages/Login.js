@@ -1,7 +1,11 @@
+import styles from "../CSS/login.module.css";
+
+const { image } = styles;
+
 function Login(props) {
   return (
     <div>
-      <h2>Login</h2>
+      <img classname={image} src={require('../images/logo.png')} />
     </div>
   );
 }
