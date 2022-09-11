@@ -1,5 +1,5 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import {getGlobalState} from './GlobalState'
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 
@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Navigate replace to={getGlobalState('loggedIn')?"/home":'/login'} />} />
+        <Route path="/" element={<Navigate replace to="/login" />} />
       </Routes>
     </BrowserRouter>
   );
