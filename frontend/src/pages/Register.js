@@ -1,14 +1,16 @@
 import { useState } from "react";
-import styles from "../CSS/login.module.css";
+import styles from "../CSS/register.module.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
-const { image, box, iu, i, button, loginRegister, w90 } = styles;
+const { image, box, iu, i, button } = styles;
 
-function Login(props) {
+function Register(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [vPW, setVPW] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [vPW1, setVPW1] = useState(false);
+  const [vPW2, setVPW2] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ function Login(props) {
             marginTop: "20px",
           }}
         >
-          Login
+          Register
         </h2>
         <div
           style={{
@@ -59,7 +61,7 @@ function Login(props) {
               width: 320,
               marginRight: 6,
             }}
-            type={!vPW ? "password" : "text"}
+            type={!vPW1 ? "password" : "text"}
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -72,10 +74,49 @@ function Login(props) {
               height: 45,
             }}
             onClick={() => {
-              setVPW(!vPW);
+              setVPW1(!vPW1);
             }}
           >
-            {vPW ? (
+            {vPW1 ? (
+              <AiOutlineEye size={35} />
+            ) : (
+              <AiOutlineEyeInvisible size={35} />
+            )}
+          </button>
+        </div>
+        <div
+          style={{
+            width: 360,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: 20,
+            marginLeft: 20,
+          }}
+        >
+          <input
+            className={`${i}`}
+            style={{
+              width: 320,
+              marginRight: 6,
+            }}
+            type={!vPW2 ? "password" : "text"}
+            placeholder="Confirm your password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <button
+            className={button}
+            style={{
+              marginRight: 0,
+              width: 45,
+              height: 45,
+            }}
+            onClick={() => {
+              setVPW2(!vPW2);
+            }}
+          >
+            {vPW2 ? (
               <AiOutlineEye size={35} />
             ) : (
               <AiOutlineEyeInvisible size={35} />
@@ -86,7 +127,7 @@ function Login(props) {
           style={{
             position: "absolute",
             left: 30,
-            top: 205,
+            top: 270,
             fontWeight: "normal",
             color: "red",
             fontSize: 15,
@@ -103,7 +144,7 @@ function Login(props) {
         >
           <input
             type="submit"
-            value="Login"
+            value="Register"
             className={button}
             style={{
               height: 45,
@@ -113,27 +154,35 @@ function Login(props) {
             }}
             onClick={(e) => {
               e.preventDefault();
-              if (username === "" || password === "") {
+              if (
+                username === "" ||
+                password === "" ||
+                confirmPassword === ""
+              ) {
                 setError("Do not leave any fields empty");
               } else {
-                fetch(
-                  "http://localhost:4000/login?username=" +
-                    username.toString().split(" ").join("+") +
-                    "&password=" +
-                    password.toString().split(" ").join("+")
-                )
-                  .then((response) => response.json())
-                  .then((data) => {
-                    console.log(data);
-                    if (data.success) {
-                      navigate("/home");
-                    } else {
-                      setError("Username or password is incorrect");
-                    }
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
+                if (password !== confirmPassword) {
+                  setError("The passwords don't match");
+                } else {
+                  fetch(
+                    "http://localhost:4000/register?username=" +
+                      username.toString().split(" ").join("+") +
+                      "&password=" +
+                      password.toString().split(" ").join("+")
+                  )
+                    .then((response) => response.json())
+                    .then((data) => {
+                      console.log(data);
+                      if (data.success) {
+                        navigate("/home");
+                      } else {
+                        setError("Username already taken");
+                      }
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                    });
+                }
               }
             }}
           />
@@ -147,14 +196,14 @@ function Login(props) {
             cursor: "pointer",
           }}
           onClick={() => {
-            navigate("/register");
+            navigate("/login");
           }}
         >
-          Don't have an account? Click here to register.
+          Already have an account? Click here to login.
         </h6>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default Register;

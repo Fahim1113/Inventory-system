@@ -40,19 +40,24 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
-  const { username, password } = req.query;
-  const user = new User({
-    username: username,
-    password: password,
-    cart: [],
+  User.find({ username: req.query.username }).then((val) => {
+    if (val.length===0) {
+      const user = new User({
+        username: req.query.username,
+        password: req.query.password,
+        cart: [],
+      });
+      user
+        .save()
+        .then((result) => {})
+        .catch((err) => {
+          console.log(err);
+        });
+        res.send({ success: true });
+      } else {
+      res.send({ success: false });
+    }
   });
-  user
-    .save()
-    .then((result) => {})
-    .catch((err) => {
-      console.log(err);
-    });
-  res.send({ success: true });
 });
 
 app.listen(4000, () => {
