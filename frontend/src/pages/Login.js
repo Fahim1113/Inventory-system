@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "../CSS/login.module.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { getGlobalState, setGlobalState } from "../GlobalState";
 
 const { image, box, iu, i, button, loginRegister, w90 } = styles;
 
@@ -117,15 +118,17 @@ function Login(props) {
                 setError("Do not leave any fields empty");
               } else {
                 fetch(
-                  "http://localhost:4000/login?username=" +
+                  getGlobalState("url") +
+                    "/login?username=" +
                     username.toString().split(" ").join("+") +
                     "&password=" +
                     password.toString().split(" ").join("+")
                 )
                   .then((response) => response.json())
                   .then((data) => {
-                    console.log(data);
                     if (data.success) {
+                      setGlobalState("username", username);
+                      setGlobalState("password", password);
                       navigate("/home");
                     } else {
                       setError("Username or password is incorrect");

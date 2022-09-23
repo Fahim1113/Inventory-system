@@ -16,15 +16,21 @@ mongoose.connect(DB);
 const UserSchema = new mongoose.Schema({
   username: { required: true, type: String },
   password: { required: true, type: String },
-  shopsOwned: { required: true, type: [Array] },
 });
 const User = mongoose.model("users", UserSchema);
 
+const ShopSchema = new mongoose.Schema({
+  owner: { required: true, type: String },
+  name: { required: true, type: String },
+  items: { required: true, type: Array },
+  description: { required: true, type: String },
+});
+const Shop = mongoose.model("shops", ShopSchema);
 //express routes
 
 app.get("/login", (req, res) => {
   User.find({ username: req.query.username }).then((val) => {
-    if (val === []) {
+    if (val.length === 0) {
       res.send({ success: false });
     } else {
       if (
@@ -41,11 +47,10 @@ app.get("/login", (req, res) => {
 
 app.get("/register", (req, res) => {
   User.find({ username: req.query.username }).then((val) => {
-    if (val.length===0) {
+    if (val.length === 0) {
       const user = new User({
         username: req.query.username,
         password: req.query.password,
-        cart: [],
       });
       user
         .save()
@@ -53,13 +58,40 @@ app.get("/register", (req, res) => {
         .catch((err) => {
           console.log(err);
         });
-        res.send({ success: true });
-      } else {
+      res.send({ success: true });
+    } else {
       res.send({ success: false });
     }
   });
 });
 
+app.get("/add-shop", (req, res) => {
+  Shop.find({ owner: req.query.owner, name: req.query.name }).then(
+    (response) => {
+      if (response.length === 0) {
+        new Shop({
+          owner: req.query.owner,
+          name: req.query.name,
+          items: [],
+          description: req.query.description,
+        }).save();
+
+        res.send({ success: true });
+      } else {
+        res.send({
+          success: false,
+          reason: "The shop with the same name already exists",
+        });
+      }
+    }
+  );
+});
+
+app.get("/get-shop", (req, res) => {
+  Shop.find({ owner: req.query.owner }).then((response) => {
+    res.send(response);
+  });
+});
 app.listen(4000, () => {
   console.log(`Server started on port`);
 });

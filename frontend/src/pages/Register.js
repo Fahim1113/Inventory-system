@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "../CSS/register.module.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { getGlobalState, setGlobalState } from "../GlobalState";
 
 const { image, box, iu, i, button } = styles;
 
@@ -165,15 +166,17 @@ function Register(props) {
                   setError("The passwords don't match");
                 } else {
                   fetch(
-                    "http://localhost:4000/register?username=" +
+                    getGlobalState("url") +
+                      "/register?username=" +
                       username.toString().split(" ").join("+") +
                       "&password=" +
                       password.toString().split(" ").join("+")
                   )
                     .then((response) => response.json())
                     .then((data) => {
-                      console.log(data);
                       if (data.success) {
+                        setGlobalState("username", username);
+                        setGlobalState("password", password);
                         navigate("/home");
                       } else {
                         setError("Username already taken");

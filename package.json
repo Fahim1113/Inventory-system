@@ -1,0 +1,21 @@
+{
+  "name": "inventory-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "f":"cd frontend\nnpm start",
+    "b":"cd backend\nnodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fahim1113/Inventory-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fahim1113/Inventory-system/issues"
+  },
+  "homepage": "https://github.com/Fahim1113/Inventory-system#readme"
+}
