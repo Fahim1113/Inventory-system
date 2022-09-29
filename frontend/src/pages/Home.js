@@ -60,7 +60,6 @@ function Home(props) {
         }}
       >
         {data.map((a, i) => {
-          console.log(a);
           return (
             <div
               key={i}
@@ -71,6 +70,12 @@ function Home(props) {
                 backgroundColor: "white",
                 marginTop: "30px",
                 borderRadius: "10px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                navigate("/view-shop", {
+                  state: a,
+                });
               }}
             >
               <Jdenticon size="200" value={a.name} />
@@ -79,15 +84,15 @@ function Home(props) {
                   width: 200,
                   padding: 10,
                 }}
-                >
+              >
                 <h1>{a.name}</h1>
                 <h6
                   style={{
                     width: 180,
                     height: 130,
-                    wordBreak:'break-word',
-                    overflowY: 'scroll',
-                    msOverflowStyle:"none"
+                    wordBreak: "break-word",
+                    overflowY: "scroll",
+                    msOverflowStyle: "none",
                   }}
                 >
                   {a.description}

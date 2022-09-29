@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AddShop from "./pages/AddShop";
+import ViewShop from "./pages/ViewShop";
+import AddItem from "./pages/AddItem";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/add-shop" element={<AddShop />} />
+        <Route path="/view-shop" element={<ViewShop />} />
+        <Route path="/add-item" element={<AddItem />} />
         <Route path="/" element={<Navigate replace to="/login" />} />
       </Routes>
     </BrowserRouter>

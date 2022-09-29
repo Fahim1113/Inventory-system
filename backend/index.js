@@ -22,10 +22,18 @@ const User = mongoose.model("users", UserSchema);
 const ShopSchema = new mongoose.Schema({
   owner: { required: true, type: String },
   name: { required: true, type: String },
-  items: { required: true, type: Array },
   description: { required: true, type: String },
 });
 const Shop = mongoose.model("shops", ShopSchema);
+
+const ItemSchema = new mongoose.Schema({
+  owner: { required: true, type: String },
+  name: { required: true, type: String },
+  price: { required: true, type: String },
+  stock: { required: true, type: String },
+  shopName: { required: true, type: String },
+});
+const Item = mongoose.model("items", ItemSchema);
 //express routes
 
 app.get("/login", (req, res) => {
@@ -72,7 +80,6 @@ app.get("/add-shop", (req, res) => {
         new Shop({
           owner: req.query.owner,
           name: req.query.name,
-          items: [],
           description: req.query.description,
         }).save();
 
@@ -92,6 +99,39 @@ app.get("/get-shop", (req, res) => {
     res.send(response);
   });
 });
+
+app.get("/add-item", (req, res) => {
+  Item.find({
+    owner: req.query.owner,
+    name: req.query.name,
+    shopName: req.query.shopName,
+  }).then((response) => {
+    if (response.length === 0) {
+      new Item({
+        owner: req.query.owner,
+        name: req.query.name,
+        stock: req.query.stock,
+        price: req.query.price,
+        shopName: req.query.shopName,
+      }).save();
+
+      res.send({ success: true });
+    } else {
+      res.send({
+        success: false,
+        reason: "The item with the same name already exists",
+      });
+    }
+  });
+});
+
+app.get("/get-item", (req, res) => {
+  Item.find({owner: req.query.owner, shopName: req.query.shopName})
+  .then((response) => {
+    res.send(response)
+  })
+});
+
 app.listen(4000, () => {
   console.log(`Server started on port`);
 });
