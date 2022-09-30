@@ -56,7 +56,7 @@ function Home(props) {
       <div
         className="d-flex justify-content-start flex-wrap"
         style={{
-          columnGap: 30,
+          // columnGap: 30,
         }}
       >
         {data.map((a, i) => {
@@ -69,6 +69,7 @@ function Home(props) {
                 height: 200,
                 backgroundColor: "white",
                 marginTop: "30px",
+                marginLeft: "30px",
                 borderRadius: "10px",
                 cursor: "pointer",
               }}
@@ -85,7 +86,14 @@ function Home(props) {
                   padding: 10,
                 }}
               >
-                <h1>{a.name}</h1>
+                <h1
+                  style={{
+                    width:180,
+                    height:"33pt",
+                    overflow:"hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >{a.name}</h1>
                 <h6
                   style={{
                     width: 180,

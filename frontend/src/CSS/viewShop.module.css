@@ -14,8 +14,21 @@
   align-items: center;
 }
 
+.i {
+  height: 45px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: large;
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
+}
+
 .button:focus,
-.button:hover {
+.button:hover,
+.i:focus,
+.i:hover {
   outline: none;
   animation-name: inputAnimation;
   animation-duration: 0.3s;
@@ -44,4 +57,8 @@
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.itemText {
+  width: calc(70%);
 }

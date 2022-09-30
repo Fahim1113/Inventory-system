@@ -99,6 +99,14 @@ app.get("/get-shop", (req, res) => {
     res.send(response);
   });
 });
+app.get("/delete-shop", async (req, res) => {
+  await Item.deleteMany({
+    owner: req.query.owner,
+    shopName: req.query.shopName,
+  });
+  await Shop.deleteOne({ owner: req.query.owner, name: req.query.shopName });
+  res.send({ success: true });
+});
 
 app.get("/add-item", (req, res) => {
   Item.find({
@@ -126,10 +134,36 @@ app.get("/add-item", (req, res) => {
 });
 
 app.get("/get-item", (req, res) => {
-  Item.find({owner: req.query.owner, shopName: req.query.shopName})
-  .then((response) => {
-    res.send(response)
-  })
+  Item.find({ owner: req.query.owner, shopName: req.query.shopName }).then(
+    (response) => {
+      res.send(response);
+    }
+  );
+});
+
+app.get("/delete-item", async (req, res) => {
+  await Item.deleteOne({
+    owner: req.query.owner,
+    shopName: req.query.shopName,
+    name: req.query.name,
+  });
+  await res.send({ success: true });
+});
+
+app.get("/update-item", async (req, res) => {
+  await Item.updateOne(
+    {
+      owner: req.query.owner,
+      name: req.query.name,
+      shopName: req.query.shopName,
+    },
+    {
+      name: req.query.newName,
+      price: req.query.newPrice,
+      stock: req.query.newStock,
+    }
+  );
+  await res.send({ success: true });
 });
 
 app.listen(4000, () => {
