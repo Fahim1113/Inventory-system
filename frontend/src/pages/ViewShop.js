@@ -4,7 +4,7 @@ import styles from "../CSS/viewShop.module.css";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { getGlobalState } from "../GlobalState";
 
-const { navBar, image, button, plusIcon, itemText } = styles;
+const { navBar, image, button, plusIcon, itemText, sidebar } = styles;
 
 function ViewShop(props) {
   const { state } = useLocation();
@@ -94,7 +94,14 @@ function ViewShop(props) {
           </button>
         </div>
       </div>
-      <div>
+      <div className={sidebar}>
+        <h1>a</h1>
+      </div>
+      <div
+        style={{
+          paddingLeft: 100,
+        }}
+      >
         {items.map((i, index) => {
           return (
             <div

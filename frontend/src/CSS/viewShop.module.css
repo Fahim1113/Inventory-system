@@ -62,3 +62,12 @@
 .itemText {
   width: calc(70%);
 }
+
+.sidebar{
+  position: fixed;
+  top: 50;
+  left: 0;
+  height: 100%;
+  width: 100px;
+  background-color: aqua;
+}
