@@ -167,5 +167,9 @@ app.get("/update-item", async (req, res) => {
 });
 
 app.listen(4000, () => {
-  console.log(`Server started on port`);
+  console.log(
+    "Server started on port 4000\n" +
+      "you can use http://localhost:4000\n" +
+      "or http://192.168.0.15:4000\n"
+  );
 });

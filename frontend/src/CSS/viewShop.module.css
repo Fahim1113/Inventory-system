@@ -68,6 +68,24 @@
   top: 50;
   left: 0;
   height: 100%;
-  width: 100px;
+  width: 250px;
   background-color: aqua;
+}
+.sidebarBtn{
+  transition: ease-in-out 300ms;
+}
+.sidebarBtn:focus,
+.sidebarBtn:hover {
+  outline: none;
+  animation-name: sidebarBtnAnimation;
+  animation-duration: 0.3s;
+  color: rgb(0, 136, 255);
+}
+@keyframes sidebarBtnAnimation {
+  0% {
+    color:#212529;
+  }
+  100% {
+    color: rgb(0, 136, 255);
+  }
 }

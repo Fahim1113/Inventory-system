@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../CSS/viewShop.module.css";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { BsPeople } from "react-icons/bs";
 import { getGlobalState } from "../GlobalState";
 
-const { navBar, image, button, plusIcon, itemText, sidebar } = styles;
+const { navBar, image, button, plusIcon, itemText, sidebar, sidebarBtn } =
+  styles;
 
 function ViewShop(props) {
   const { state } = useLocation();
@@ -94,12 +96,29 @@ function ViewShop(props) {
           </button>
         </div>
       </div>
-      <div className={sidebar}>
-        <h1>a</h1>
+      <div
+        className={`${sidebar} bg-light d-flex justify-content-center align-items-start p-2`}
+        style={{ cursor: "pointer" }}
+        onClick={() => navigate("/view-employees")}
+      >
+        <p
+          style={{
+            width: "100%",
+            height: 50,
+            fontSize: 30,
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
+          className={sidebarBtn}
+        >
+          <BsPeople />
+          {"  "}Employees
+        </p>
       </div>
       <div
         style={{
-          paddingLeft: 100,
+          paddingLeft: 250,
         }}
       >
         {items.map((i, index) => {
