@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "f": "cd frontend\nnpm start",
+    "f": "cd frontend\nreact-scripts start",
     "b": "cd backend\nnodemon"
   },
   "repository": {
