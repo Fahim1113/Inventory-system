@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "../CSS/home.module.css";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { getGlobalState, setGlobalState } from "../GlobalState";
-import Jdenticon from "react-jdenticon";
+import {toSvg} from "jdenticon"
 
 const { image, navBar, button, plusIcon } = styles;
 
@@ -79,7 +79,7 @@ function Home(props) {
                 });
               }}
             >
-              <Jdenticon size="200" value={a.name} />
+              <div dangerouslySetInnerHTML={{ __html: toSvg(a.name, 200) }} />
               <div
                 style={{
                   width: 200,
