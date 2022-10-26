@@ -99,7 +99,7 @@ function ViewShop(props) {
       <div
         className={`${sidebar} bg-light d-flex justify-content-center align-items-start p-2`}
         style={{ cursor: "pointer" }}
-        onClick={() => navigate("/view-employees")}
+        onClick={() => navigate("/view-employees", {state: state})}
       >
         <p
           style={{

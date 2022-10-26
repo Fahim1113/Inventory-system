@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "f": "cd frontend\nreact-scripts start",
-    "b": "cd backend\nnodemon"
+    "f": "cd frontend\nclear\nreact-scripts start",
+    "b": "cd backend\nclear\nnodemon"
   },
   "repository": {
     "type": "git",

@@ -8,6 +8,7 @@ import ViewShop from "./pages/ViewShop";
 import AddItem from "./pages/AddItem";
 import ViewItem from "./pages/ViewItem";
 import ViewEmployees from "./pages/ViewEmployees";
+import AddEmployee from "./pages/AddEmployee";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/add-item" element={<AddItem />} />
         <Route path="/view-item" element={<ViewItem />} />
         <Route path="/view-employees" element={<ViewEmployees />} />
+        <Route path="/add-employee" element={<AddEmployee />} />
         <Route path="/" element={<Navigate replace to="/login" />} />
       </Routes>
     </BrowserRouter>

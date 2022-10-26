@@ -34,6 +34,21 @@ const ItemSchema = new mongoose.Schema({
   shopName: { required: true, type: String },
 });
 const Item = mongoose.model("items", ItemSchema);
+
+const EmployeeSchema = new mongoose.Schema({
+  shopName: { required: true, type: String },
+  shopOwner: { required: true, type: String },
+  name: { required: true, type: String },
+  address: { required: true, type: String },
+  department: { required: true, type: String },
+  employeeNumber: { required: true, type: String },
+  bankAccount: { required: true, type: String },
+  taxRate: { required: true, type: String},
+  insuranceNumber: { required: true, type: String },
+});
+
+const Employee = mongoose.model("employees", EmployeeSchema);
+
 //express routes
 
 app.get("/login", (req, res) => {
