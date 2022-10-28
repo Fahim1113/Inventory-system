@@ -1,4 +1,4 @@
-import express from "express";
+import express, { application, request } from "express";
 import cors from "cors";
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -43,7 +43,7 @@ const EmployeeSchema = new mongoose.Schema({
   department: { required: true, type: String },
   employeeNumber: { required: true, type: String },
   bankAccount: { required: true, type: String },
-  taxRate: { required: true, type: String},
+  taxRate: { required: true, type: String },
   insuranceNumber: { required: true, type: String },
 });
 
@@ -181,10 +181,71 @@ app.get("/update-item", async (req, res) => {
   await res.send({ success: true });
 });
 
-app.listen(4000, () => {
-  console.log(
-    "Server started on port 4000\n" +
-      "you can use http://localhost:4000\n" +
-      "or http://192.168.0.15:4000\n"
+app.get("/add-employee", async (req, res) => {
+  await new Employee({
+    shopName: req.query.shopName,
+    shopOwner: req.query.shopOwner,
+    name: req.query.name,
+    address: req.query.address,
+    department: req.query.department,
+    employeeNumber: req.query.employeeNumber,
+    bankAccount: req.query.bankAccount,
+    taxRate: req.query.taxRate,
+    insuranceNumber: req.query.insuranceNumber,
+  }).save();
+  await res.send({ success: true });
+});
+
+app.get("/get-employee", (req, res) => {
+  Employee.find({
+    shopOwner: req.query.shopOwner,
+    shopName: req.query.shopName,
+  }).then((response) => {
+    res.send(response);
+  });
+});
+
+app.get("/delete-employee", async (req, res) => {
+  await Employee.deleteOne({
+    shopName: req.query.shopName,
+    shopOwner: req.query.shopOwner,
+    name: req.query.name,
+    address: req.query.address,
+    department: req.query.department,
+    employeeNumber: req.query.employeeNumber,
+    bankAccount: req.query.bankAccount,
+    taxRate: req.query.taxRate,
+    insuranceNumber: req.query.insuranceNumber,
+  });
+  await res.send({ success: true });
+});
+
+app.get("/update-employee", async (req, res) => {
+  await Employee.updateOne(
+    {
+      shopName: req.query.shopName,
+      shopOwner: req.query.shopOwner,
+      name: req.query.name,
+      address: req.query.address,
+      department: req.query.department,
+      employeeNumber: req.query.employeeNumber,
+      bankAccount: req.query.bankAccount,
+      taxRate: req.query.taxRate,
+      insuranceNumber: req.query.insuranceNumber,
+    },
+    {
+      name: req.query.nameNew,
+      address: req.query.addressNew,
+      department: req.query.departmentNew,
+      employeeNumber: req.query.employeeNumberNew,
+      bankAccount: req.query.bankAccountNew,
+      taxRate: req.query.taxRateNew,
+      insuranceNumber: req.query.insuranceNumberNew,
+    }
   );
+  await res.send({success: true})
+});
+
+app.listen(4000, () => {
+  console.log("Server started on port 4000");
 });

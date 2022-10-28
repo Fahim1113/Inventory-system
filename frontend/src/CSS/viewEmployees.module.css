@@ -60,7 +60,6 @@
 }
 
 .itemText {
-  width: calc(70%);
 }
 
 .sidebar {
@@ -88,4 +87,17 @@
   100% {
     color: rgb(0, 136, 255);
   }
+}
+
+table {
+  width: 800px;
+  height: 200px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: center;
+  max-width: calc(14%);
+  min-width: calc(14%);
 }

@@ -134,9 +134,6 @@ function Login(props) {
                       setError("Username or password is incorrect");
                     }
                   })
-                  .catch((err) => {
-                    console.log(err);
-                  });
               }
             }}
           />

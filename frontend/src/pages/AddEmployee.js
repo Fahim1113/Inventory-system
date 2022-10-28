@@ -138,8 +138,34 @@ export default function AddEmployee() {
               insuranceNumber == ""
             ) {
               setErr("You can't leave any feilds black");
-              console.log(state)
             } else {
+              fetch(
+                getGlobalState("url") +
+                  "/add-employee?shopName=" +
+                  state.name +
+                  "&shopOwner=" +
+                  state.owner +
+                  "&name=" +
+                  name.split(" ").join("+") +
+                  "&address=" +
+                  address.split(" ").join("+") +
+                  "&department=" +
+                  department.split(" ").join("+") +
+                  "&employeeNumber=" +
+                  employeeNumber +
+                  "&bankAccount=" +
+                  bankAccount.split(" ").join("+") +
+                  "&taxRate=" +
+                  taxRate +
+                  "&insuranceNumber=" +
+                  insuranceNumber
+              )
+                .then((response) => response.json())
+                .then((response) => {
+                  if (response.success) {
+                    navigate("/view-employees", { state: state });
+                  }
+                });
             }
           }}
         />

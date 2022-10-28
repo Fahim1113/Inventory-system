@@ -141,6 +141,7 @@ function ViewShop(props) {
                   state: i,
                 });
               }}
+              key={index}
             >
               <div className="d-flex align-items-baseline">
                 <h1

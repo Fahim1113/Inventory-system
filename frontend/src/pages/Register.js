@@ -182,9 +182,6 @@ function Register(props) {
                         setError("Username already taken");
                       }
                     })
-                    .catch((err) => {
-                      console.log(err);
-                    });
                 }
               }
             }}

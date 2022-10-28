@@ -11,7 +11,6 @@ export default function AddItem() {
   const [err, setErr] = useState("");
   const navigate = useNavigate();
   const { state } = useLocation();
-  console.log(state)
   return (
     <div>
       <img
@@ -119,7 +118,6 @@ export default function AddItem() {
                   } else {
                     setErr(data.reason);
                   }
-                  console.log(data);
                 });
             }
           }}
