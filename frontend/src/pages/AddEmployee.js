@@ -129,13 +129,13 @@ export default function AddEmployee() {
           onClick={(e) => {
             e.preventDefault();
             if (
-              name == "" ||
-              address == "" ||
-              department == "" ||
-              employeeNumber == "" ||
-              bankAccount == "" ||
-              taxRate == "" ||
-              insuranceNumber == ""
+              name === "" ||
+              address === "" ||
+              department === "" ||
+              employeeNumber === "" ||
+              bankAccount === "" ||
+              taxRate === "" ||
+              insuranceNumber === ""
             ) {
               setErr("You can't leave any feilds black");
             } else {
