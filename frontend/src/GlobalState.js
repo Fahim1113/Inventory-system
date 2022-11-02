@@ -3,6 +3,6 @@ import { createGlobalState } from "react-hooks-global-state";
 const { getGlobalState, setGlobalState } = createGlobalState({
   username: "",
   password: "",
-  url: "https://inventorySystem.fahim-shahriyar.repl.co",
+  url: "https://inventory-system-by-fahim.herokuapp.com/",
 });
 export { getGlobalState, setGlobalState };
