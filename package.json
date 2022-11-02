@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "b": "cd backend\ncls\nnodemon"
+    "b": "cd backend\ncls\nnodemon",
+    "g":"git add .\ngit commit -m \"q\"\ngit push\ncd frontend\ngit add .\ngit commit -m \"q\"\ncd backend\ngit add .\ngit commit -m \"q\""
   },
   "repository": {
     "type": "git",
