@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "b": "cd backend\ncls\nnodemon",
-    "g":"git add .\ngit commit -m \"q\"\ngit push\ncd frontend\ngit add .\ngit commit -m \"q\"\ngit push\ncd ../backend\ngit add .\ngit commit -m \"q\"\ngit push"
+    "g":"\nclear\ngit add .\ngit commit -m \"q\"\ngit push\ncd frontend\ngit add .\ngit commit -m \"q\"\ngit push\ncd ../backend\ngit add .\ngit commit -m \"q\"\ngit push\nclear"
   },
   "repository": {
     "type": "git",
